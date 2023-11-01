@@ -332,3 +332,10 @@ samples/js/**/microsoft.cognitiveservices.speech.sdk.bundle*.js*
 
 # iOS framwork
 samples/objective-c/ios/MicrosoftCognitiveServicesSpeech.framework/
+.DS_Store
+.github/.DS_Store
+quickstart/.DS_Store
+sampledata/.DS_Store
+samples/.DS_Store
+samples/python/.DS_Store
+scenarios/.DS_Store

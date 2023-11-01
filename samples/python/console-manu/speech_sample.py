@@ -28,11 +28,12 @@ except ImportError:
 
 # Set up the subscription info for the Speech Service:
 # Replace with your own subscription key and service region (e.g., "westus").
-speech_key, service_region = "YourSubscriptionKey", "YourServiceRegion"
+speech_key, service_region = "7b861988e970480a852c8b09fa9531ca", "germanywestcentral"
 
 # Specify the path to an audio file containing speech (mono WAV / PCM with a sampling rate of 16
 # kHz).
 weatherfilename = "whatstheweatherlike.wav"
+weatherfilename = "realtime-text-azure.wav"
 weatherfilenamemp3 = "whatstheweatherlike.mp3"
 
 
@@ -364,12 +365,16 @@ def speech_recognize_continuous_async_from_microphone():
     speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config)
 
     done = False
-
     def recognizing_cb(evt: speechsdk.SpeechRecognitionEventArgs):
-        print('RECOGNIZING: {}'.format(evt))
+        # print('RECOGNIZING: {}'.format(evt))
+        print("\r\033[K", end='')
+        print (evt.result.text ,end="")
 
     def recognized_cb(evt: speechsdk.SpeechRecognitionEventArgs):
-        print('RECOGNIZED: {}'.format(evt))
+        pass
+        # print('RECOGNIZED: {}'.format(evt))
+        # print (f"\r\rFINISHED.")
+
 
     def stop_cb(evt: speechsdk.SessionEventArgs):
         """callback that signals to stop continuous recognition"""
@@ -390,12 +395,12 @@ def speech_recognize_continuous_async_from_microphone():
     result_future = speech_recognizer.start_continuous_recognition_async()
 
     result_future.get()  # wait for voidfuture, so we know engine initialization is done.
-    print('Continuous Recognition is now running, say something.')
+    print('\nContinuous Recognition is now running, say something.')
 
     while not done:
         # No real sample parallel work to do on this thread, so just wait for user to type stop.
         # Can't exit function or speech_recognizer will go out of scope and be destroyed while running.
-        print('type "stop" then enter when done')
+        print('type "stop" then enter when done\n')
         stop = input()
         if (stop.lower() == "stop"):
             print('Stopping async recognition.')
