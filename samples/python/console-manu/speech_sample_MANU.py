@@ -33,7 +33,7 @@ except ImportError:
 
 # Set up the subscription info for the Speech Service:
 # Replace with your own subscription key and service region (e.g., "westus").
-speech_key, service_region = "7b861988e970480a852c8b09fa9531ca", "germanywestcentral"
+speech_key, service_region = "15536124dfdf4ef0a8c34c9bc6463b8a", "germanywestcentral"
 
 # Specify the path to an audio file containing speech (mono WAV / PCM with a sampling rate of 16
 # kHz).
